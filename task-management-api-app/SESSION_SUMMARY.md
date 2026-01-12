@@ -25,7 +25,7 @@
 - **Deliverable:** Working API + 60-90 second demo video
 
 ### What We're Building
-A RESTful API that manages tasks with full CRUD operations:
+A Task Management API with full CRUD operations:
 - **C**reate - Add new tasks
 - **R**ead - View tasks (all or single)
 - **U**pdate - Modify existing tasks
@@ -857,11 +857,11 @@ No pending files - application is fully functional.
 
 ### Commands
 ```bash
-# Navigate to project
-cd "C:\Users\MUDASSAR MUNEER\Documents\panaversity-projects\ai-400\task-management-api-app"
+# Navigate to project directory first, then:
 
-# Activate virtual environment (Windows)
-.\venv\Scripts\activate
+# Activate virtual environment
+# Windows: .\venv\Scripts\activate
+# Mac/Linux: source venv/bin/activate
 
 # Install dependencies
 pip install -e ".[dev]"
@@ -929,7 +929,8 @@ task-management-api-app/
 ## Quick Commands Reference
 ```bash
 # Activate virtual environment
-.\venv\Scripts\activate
+# Windows: .\venv\Scripts\activate
+# Mac/Linux: source venv/bin/activate
 
 # Run the server
 uvicorn app.main:app --reload
@@ -938,7 +939,7 @@ uvicorn app.main:app --reload
 pytest -v
 
 # View API docs
-http://localhost:8000/docs
+# http://localhost:8000/docs
 ```
 
 ---
