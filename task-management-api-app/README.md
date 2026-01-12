@@ -1,6 +1,6 @@
 # Task Management API
 
-A RESTful API for managing tasks built with FastAPI, SQLModel, and pytest.
+A Task Management API built with FastAPI, SQLModel, and pytest.
 
 ## Tech Stack
 
