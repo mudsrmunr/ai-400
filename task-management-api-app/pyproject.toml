@@ -1,0 +1,123 @@
+# ============================================================================
+# PROJECT CONFIGURATION FILE (pyproject.toml)
+# ============================================================================
+# This file defines:
+#   1. Project metadata (name, version, etc.)
+#   2. Dependencies (packages we need)
+#   3. Tool configurations (pytest settings, etc.)
+#
+# Technical Standard: PEP 518 (build system) + PEP 621 (metadata)
+# File Format: TOML (Tom's Obvious, Minimal Language)
+# ============================================================================
+
+# ----------------------------------------------------------------------------
+# BUILD SYSTEM
+# ----------------------------------------------------------------------------
+# Tells Python what tool to use for building/installing this project
+# "hatchling" is a modern, fast build backend
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# ----------------------------------------------------------------------------
+# PROJECT METADATA
+# ----------------------------------------------------------------------------
+# Basic information about your project
+[project]
+name = "task-management-api"
+version = "1.0.0"
+description = "A Task Management API built with FastAPI, SQLModel, and pytest"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+
+# Authors - who created this project
+authors = [
+    { name = "Your Name", email = "your.email@example.com" }
+]
+
+# Keywords - help others find your project
+keywords = ["fastapi", "api", "task-management", "sqlmodel", "crud"]
+
+# ----------------------------------------------------------------------------
+# DEPENDENCIES
+# ----------------------------------------------------------------------------
+# Packages required to RUN your application
+# These get installed when someone installs your project
+dependencies = [
+    # ----- WEB FRAMEWORK -----
+    # FastAPI: Modern, fast web framework for building APIs
+    # - Automatic data validation
+    # - Automatic API documentation
+    # - High performance (async support)
+    "fastapi>=0.109.0",
+
+    # ----- SERVER -----
+    # Uvicorn: ASGI server that runs FastAPI
+    # [standard] includes extras: uvloop, httptools for better performance
+    "uvicorn[standard]>=0.27.0",
+
+    # ----- DATABASE -----
+    # SQLModel: Combines SQLAlchemy (database) + Pydantic (validation)
+    # - Write database models with Python classes
+    # - Automatic type validation
+    # - Works with any SQL database
+    "sqlmodel>=0.0.16",
+
+    # psycopg2-binary: PostgreSQL database adapter
+    # "binary" = pre-compiled, no need for PostgreSQL installed locally
+    # Used when connecting to Neon (PostgreSQL in cloud)
+    "psycopg2-binary>=2.9.9",
+
+    # ----- CONFIGURATION -----
+    # pydantic-settings: Manages app settings from environment variables
+    # SECURITY: Helps keep secrets out of code
+    "pydantic-settings>=2.1.0",
+
+    # python-dotenv: Loads .env file into environment variables
+    # SECURITY: Keeps secrets in .env file, not in code
+    "python-dotenv>=1.0.0",
+]
+
+# ----------------------------------------------------------------------------
+# OPTIONAL DEPENDENCIES (Development/Testing)
+# ----------------------------------------------------------------------------
+# Packages needed for DEVELOPMENT, not for running the app
+# Install with: pip install -e ".[dev]"
+[project.optional-dependencies]
+dev = [
+    # ----- TESTING -----
+    # pytest: Testing framework
+    # - Discovers and runs tests automatically
+    # - Clear test output
+    "pytest>=8.0.0",
+
+    # pytest-asyncio: Allows testing async functions
+    "pytest-asyncio>=0.23.0",
+
+    # httpx: HTTP client for testing API endpoints
+    # - Can send requests to your FastAPI app in tests
+    "httpx>=0.26.0",
+
+    # ----- CODE QUALITY -----
+    # These help write better code (optional but recommended)
+    # "black>=24.0.0",      # Code formatter
+    # "ruff>=0.1.0",        # Fast linter
+]
+
+# ----------------------------------------------------------------------------
+# TOOL CONFIGURATIONS
+# ----------------------------------------------------------------------------
+
+# pytest configuration
+[tool.pytest.ini_options]
+# Tell pytest to handle async tests
+asyncio_mode = "auto"
+# Where to find tests
+testpaths = ["tests"]
+# Show extra info when running tests
+addopts = "-v"
+
+# hatch build configuration
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
